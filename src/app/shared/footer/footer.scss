@@ -1,0 +1,51 @@
+$text-color: #0f1114;
+$background-color: #f0f6ff; // light grey
+$font-family: 'Source Sans Pro', sans-serif, Arial;
+* {
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+}
+.footer {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: $font-family;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem; // taller footer
+  text-align: center;
+
+  .footer-content {
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    .footer-about {
+      p {
+        margin: 0.3rem 0;
+        font-size: 0.95rem;
+
+        &.title {
+          font-weight: 600;
+          font-size: 1.1rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    .footer-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+.footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}

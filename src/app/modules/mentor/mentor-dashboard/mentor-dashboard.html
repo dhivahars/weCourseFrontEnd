@@ -1,0 +1,23 @@
+<div class="dashboard">
+  <header class="top-nav">
+    <div class="logo">WeCourse</div>
+    <nav>
+      <button class="btn primary" routerLink="profile">
+        <span class="material-symbols-outlined">person</span> Profile
+      </button>
+      <button class="btn primary" routerLink="mycourse">
+        <span class="material-symbols-outlined">menu_book</span> My Courses
+      </button>
+      <button class="btn primary" routerLink="mystudent">
+        <span class="material-symbols-outlined">groups</span> My Students
+      </button>
+      <we-button label="Sign Out" variant="danger" (onClick)="onSignOut()">
+        <span class="material-symbols-outlined">logout</span>
+      </we-button>
+    </nav>
+  </header>
+
+  <main class="content">
+       <router-outlet></router-outlet>
+  </main>
+</div>

@@ -1,0 +1,165 @@
+$primary-color: rgb(0, 86, 210);
+$text-color: #0f1114;
+$background-color: #f0f6ff;
+$font-family: 'Source Sans Pro', sans-serif, Arial;
+
+.students-section {
+  width: 100%;
+  background: $background-color;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.6s ease-in-out;
+
+  h2 {
+    color: $primary-color;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    color: $text-color;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  // Grid container for student cards
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    animation: fadeInUp 0.4s ease forwards;
+  }
+
+  // Individual student card
+  .student-card {
+    background-color: white;
+    border-left: 4px solid $primary-color;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 86, 210, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 86, 210, 0.15);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      color: $text-color;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: $text-color;
+      margin-bottom: 0.4rem;
+
+      strong {
+        font-weight: 600;
+        color: $text-color;
+      }
+    }
+
+    .progress {
+      font-weight: 600;
+      color: $primary-color;
+    }
+
+    .completed {
+      font-weight: 600;
+      color: green;
+    }
+
+    .halfway {
+      font-weight: 600;
+      color: #ffd500;
+    }
+  }
+
+  // Empty state
+  p.no-student {
+    color: #555;
+    font-style: $font-family;
+    margin-top: 1rem;
+  }
+}
+
+/* ===== Fade In Animation ===== */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 1024px) {
+  .students-section {
+    padding: 1.5rem;
+
+    .card-container {
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .students-section {
+    padding: 1rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .card-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+
+    .student-card {
+      padding: 1rem;
+
+      h3 {
+        font-size: 1.1rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .students-section {
+    padding: 0.8rem;
+
+    h2 {
+      font-size: 1.3rem;
+    }
+
+    .card-container {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .student-card {
+      padding: 0.8rem;
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 0.85rem;
+      }
+    }
+  }
+}

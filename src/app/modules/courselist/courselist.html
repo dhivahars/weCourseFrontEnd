@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Available Courses</h2>
+
+  @if (loading) {
+  <p class="noData">Loading courses...</p>
+  } @if (!loading && courses.length > 0) {
+  <div class="courses-grid">
+    @for (course of courses; track course.id) {
+    <div class="course-card">
+      <div class="course-content">
+        <h3>{{ course.title }}</h3>
+        <p class="description">{{ course.description }}</p>
+
+        <div class="meta">
+          <p><strong>Mentor:</strong> {{ course.mentorName?.name }}</p>
+          <p><strong>Capacity:</strong> {{ course.capacity }}</p>
+        </div>
+      </div>
+
+      <button class="enroll-btn" (click)="viewDetails(course.id)">View Details</button>
+    </div>
+    }
+  </div>
+  } @else {
+  <p class="noData">No courses available right now.</p>
+  }
+</div>

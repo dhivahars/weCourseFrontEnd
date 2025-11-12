@@ -1,0 +1,23 @@
+<div class="module-container">
+  <!-- Back to Profile -->
+  <button class="back-btn" (click)="redirectToDashboard()">← Back to Profile</button>
+
+  <h1>Java Module</h1>
+
+  <pre class="module-text">
+      {{ content }}
+  </pre>
+  <button class="download-btn" (click)="downloadPDF()">Download Module</button>
+  @if(errorMessage){
+  <div class="error">
+    {{ errorMessage }}
+  </div>
+  }
+
+  <div class="button-row">
+    <!-- Complete button (enabled after scroll) -->
+    <button [disabled]="!hasScrolledToBottom" class="complete-btn" (click)="markComplete()">
+      Mark as Complete
+    </button>
+  </div>
+</div>

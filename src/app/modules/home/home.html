@@ -1,0 +1,79 @@
+<main>
+  @if(!isLogged()){ @switch(role){ @case('student'){
+  <header class="top-nav">
+    <div class="logo">WeCourse</div>
+    <nav>
+      <!-- Home Button -->
+      <button class="btn primary" (click)="onNavigate('/app-home')" routerLinkActive="active">
+        <span class="material-symbols-outlined">home</span>
+        Home
+      </button>
+
+      <!-- Profile Button (current page) -->
+      <button class="btn primary" (click)="redirectToDashboard()">
+        <span class="material-symbols-outlined">person</span>
+        Profile
+      </button>
+
+      <we-button label="Sign Out" variant="danger" (onClick)="onSignOut()">
+        <span class="material-symbols-outlined">logout</span>
+      </we-button>
+    </nav>
+  </header>
+  } @case('mentor'){
+  <header class="top-nav">
+    <div class="logo">WeCourse</div>
+    <nav>
+      <!-- Home Button -->
+      <button class="btn primary" (click)="onNavigate('/app-home')" routerLinkActive="active">
+        <span class="material-symbols-outlined">home</span>
+        Home
+      </button>
+
+      <!-- Profile Button (current page) -->
+      <button class="btn primary" (click)="onNavigate('/mentor-dashboard')">
+        <span class="material-symbols-outlined">person</span>
+        Profile
+      </button>
+
+      <we-button label="Sign Out" variant="danger" (onClick)="onSignOut()">
+        <span class="material-symbols-outlined">logout</span>
+      </we-button>
+    </nav>
+  </header>
+  } }}
+  <div class="home-container">
+    <div class="content">
+      <h1 style="color: rgb(0, 86, 210)">WeCourse</h1>
+      <h1 class="title">Learn. Practice. Grow - with WeCourse</h1>
+      <p class="subtitle">
+        A modern learning platform where you learn through real projects, guided lessons, and
+        support from expert mentors.
+      </p>
+      @if(isLogged()){
+      <div class="button">
+        <div class="btn">
+          <we-button label="Login" variant="primary" (click)="onLogClick()"></we-button>
+        </div>
+
+        <div class="btn">
+          <we-button
+            label="Sign up"
+            variant="secondary"
+            class="sign-btn"
+            (click)="openSignup()"
+          ></we-button>
+        </div>
+      </div>
+      }
+    </div>
+    <div class="image">
+      <img src="assets/images/img3.png" alt="Home" />
+    </div>
+  </div>
+  @if(!isLogged()){
+  <section class="courses">
+    <app-courselist></app-courselist>
+  </section>
+  }
+</main>

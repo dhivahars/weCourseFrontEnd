@@ -1,0 +1,16 @@
+<section class="students-section">
+  <h2>My Students</h2>
+  @if (students.length > 0) {
+  <div class="card-container">
+    @for (student of students; track student.studentName) {
+    <div class="student-card">
+      <h3>{{ student.studentName }}</h3>
+      <p><strong>Course:</strong> {{ student.courseName }}</p>
+      <p><strong>Progress:</strong> {{ student.progressPercentage }}%</p>
+    </div>
+    }
+  </div>
+  } @else {
+  <p>No students enrolled yet.</p>
+  }
+</section>

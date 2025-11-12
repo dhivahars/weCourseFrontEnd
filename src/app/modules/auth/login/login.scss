@@ -1,0 +1,142 @@
+$primary-color: rgb(0, 86, 210);
+$text-color: #0f1114;
+$background-color: #f0f6ff;
+$font-family: 'Source Sans Pro', sans-serif, Arial;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family;
+}
+.container {
+  width: 100%;
+  max-width: 400px;
+  min-width: 300px;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.close-btn {
+  position: relative;
+  top: -20px;
+  right: -165px;
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    color: #000;
+    transform: scale(1.1);
+  }
+}
+
+.fields label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  margin-top: 5px;
+}
+
+.fields input {
+  padding: 0.5rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+}
+.showPass {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 0.3rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+body {
+  height: 100vh;
+  width: 98vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  color: #555;
+  align-items: flex-start;
+  margin-top: -7px;
+  font-size: 15px;
+  gap: 5px;
+}
+.switch {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 0.3rem;
+  cursor: pointer;
+  color: #555;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: rgb(0, 86, 210);
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+}
+.error-popup {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+
+  background-color: #ff4d4d;
+  color: white;
+  padding: 12px 18px;
+
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  animation: fadeIn 0.2s ease-out;
+  z-index: 9999;
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

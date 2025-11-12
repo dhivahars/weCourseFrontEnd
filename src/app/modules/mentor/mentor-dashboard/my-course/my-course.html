@@ -1,0 +1,61 @@
+<section class="courses-section">
+  <h2>My Courses</h2>
+
+  @if (courses.length > 0) {
+    <div class="card-container">
+      @for (course of courses; track course.id) {
+        <div class="course-card">
+          <h3>{{ course.title }}</h3>
+          <p class="desc">{{ course.description }}</p>
+          <p><strong>Capacity:</strong> {{ course.capacity }}</p>
+          <p><strong>Skill:</strong> {{ course.skill }}</p>
+          <p><strong>No.of Enrollment</strong> {{ course.enrolledCount }}</p>
+
+          <div class="button">
+            <we-button label="Edit" (click)="openModal(course)"> <span class="material-symbols-outlined">edit</span> Edit</we-button>
+            <we-button label="Delete" variant="danger" (click)="deleteCourse(course.id)"><span class="material-symbols-outlined">delete</span></we-button>
+            <!-- <button (click)="openModal(course)">Edit</button>
+            <button (click)="deleteCourse(course.id)">Delete</button> -->
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <p class="no-course">No courses available.</p>
+  }
+  <div class="add">
+  <we-button label="Add Course" (click)="openModal()"></we-button>
+  </div>
+</section>
+
+<!-- ✅ Simple modal -->
+@if (showModal) {
+  <div class="container" (click)="closeModal()"></div>
+  <div class="modal">
+    <h1>{{ editingCourseId ? 'Edit Course' : 'Create Course' }}</h1>
+    
+    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+       <div class="field">
+       <we-input label="Course Title" type="text" id="title" placeholder="Enter Course Title" formControlName="title"></we-input>
+       <we-input label="Description" type="text" formControlName="description" placeholder="Provide description"></we-input>
+       <we-input label="Capacity" type="number" id="capacity" placeholder="Enter no.of Capacity" formControlName="capacity"></we-input>
+       <we-input label="Skill" type="text" id="skill" placeholder="Enter Skill" formControlName="skill"></we-input>
+       <we-input label="Prerequisites" type="text" id="prerequisites" placeholder="Enter Prerequisites in (comma separated)" formControlName="prerequisites"></we-input>
+        
+      <!-- <input formControlName="title" placeholder="Course Title" /> -->
+      <!-- <textarea formControlName="description" placeholder="Description"></textarea> -->
+      <!-- <input formControlName="capacity" type="number" placeholder="Capacity" /> -->
+      <!-- <input formControlName="skill" placeholder="Skill" /> -->
+      <!-- <input formControlName="prerequisites" placeholder="Prerequisites (comma separated)" />
+      <input formControlName="url" placeholder="Course URL" /> -->
+
+      <div class="modal-button">
+        <we-button label="{{ editingCourseId ? 'Update' : 'Create' }}" type="submit"></we-button>
+        <!-- <button type="submit">{{ editingCourseId ? 'Update' : 'Create' }}</button> -->
+        <!-- <button type="button" (click)="closeModal()">Cancel</button> -->
+        <we-button label="cancel"  (click)="closeModal()"></we-button>    
+      </div>
+      </div>
+    </form>
+  </div>
+}

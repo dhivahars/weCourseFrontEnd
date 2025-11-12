@@ -1,0 +1,39 @@
+$hover-bgcolor: #f0f6ff;
+* {
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-style: normal;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  // margin-bottom: 1.25rem;
+}
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+input {
+  padding: 0.5rem;
+  border: 1px solid #7b8491;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 0.1s ease;
+  &:hover {
+    background: $hover-bgcolor;
+  }
+  &:focus {
+    border: 1px solid #3b82f6;
+    background-color: #fff;
+    box-shadow: 0px 0px 2px rgba($color: #3b82f6, $alpha: 1);
+  }
+  &::placeholder {
+    color: #7b8491;
+  }
+}
+label {
+  font-weight: 500;
+  color: #0f1114;
+  font-size: 0.95rem;
+}

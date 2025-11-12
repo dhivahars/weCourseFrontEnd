@@ -1,0 +1,148 @@
+<body>
+  <div class="container">
+    <button class="close-btn" type="button" (click)="close()">✕</button>
+    <div class="title">Sign Up</div>
+
+    <form [formGroup]="signup" (ngSubmit)="onSubmit()">
+      <!-- name -->
+      <div class="fields">
+        <we-input
+          label="name"
+          type="text"
+          id="name"
+          placeholder="Enter your Name"
+          formControlName="name"
+        ></we-input>
+
+        @if (r['name']?.invalid && (r['name']?.dirty || r['name']?.touched)) {
+        <div class="error">
+          @if (r['name']?.errors?.['required']) {
+          <div>Username is required</div>
+          } @if (r['name']?.errors?.['pattern']) {
+          <div>Only alphabets allowed (4–10 characters)</div>
+          }
+        </div>
+        }
+      </div>
+
+      <!-- Email -->
+      <div class="fields">
+        <we-input
+          label="Email"
+          type="text"
+          id="email"
+          placeholder="Enter your email"
+          formControlName="email"
+        ></we-input>
+
+        @if (r['email']?.invalid && (r['email']?.dirty || r['email']?.touched)) {
+        <div class="error">
+          @if (r['email']?.errors?.['required']) {
+          <div>Email is required</div>
+          } @if (r['email']?.errors?.['pattern']) {
+          <div>Enter your email like "name@gmail.com"</div>
+          }
+        </div>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="fields">
+        <we-input
+          label="Password"
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          formControlName="password"
+        ></we-input>
+
+        @if (r['password']?.invalid && (r['password']?.dirty || r['password']?.touched)) {
+        <div class="error">
+          @if (r['password']?.errors?.['required']) {
+          <div>Password is required</div>
+          } @if (r['password']?.errors?.['pattern']) {
+          <div class="passcontext">
+            Password must have at least:
+            <ul>
+              <li>One uppercase letter</li>
+              <li>One lowercase letter</li>
+              <li>One number</li>
+              <li>One special character</li>
+              <li>Minimum 8 characters</li>
+            </ul>
+          </div>
+          }
+        </div>
+        }
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="fields">
+        <we-input
+          label="Confirm Password"
+          type="password"
+          id="confirmpassword"
+          placeholder="Re-enter your password"
+          formControlName="confirmpassword"
+          [disabled]="!signup.get('password')?.value"
+        ></we-input>
+
+        @if (r['confirmpassword']?.invalid && (r['confirmpassword']?.dirty ||
+        r['confirmpassword']?.touched)) {
+        <div class="error">
+          @if (r['confirmpassword']?.errors?.['required']) {
+          <div>Confirm Password is required</div>
+          } @if (r['confirmpassword']?.errors?.['mismatch']) {
+          <div>Passwords do not match</div>
+          }
+        </div>
+        }
+      </div>
+
+      <!-- Role -->
+      <div class="select">
+        <div>
+          <label for="role">Role</label>
+        </div>
+        <select id="role" formControlName="role">
+          <option value="" disabled selected>Select your role</option>
+          <option value="student">Student</option>
+          <option value="mentor">Mentor</option>
+        </select>
+        @if (r['role']?.invalid && (r['role']?.dirty || r['role']?.touched)) {
+        <div class="error">
+          @if (r['role']?.errors?.['required']) {
+          <div>Role is required</div>
+          }
+        </div>
+        }
+      </div>
+
+      <!-- Skills -->
+      <mat-form-field appearance="fill" class="skills-field">
+        <mat-label>Skills</mat-label>
+        <mat-select formControlName="skills" multiple>
+          @for (skill of skillsList; track $index) {
+          <mat-option [value]="skill">{{ skill }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Submit -->
+      <div class="btn">
+        <we-button label="Sign Up" type="submit"></we-button>
+      </div>
+
+      <!-- Switch to Login -->
+      <div class="switch">
+        <p>
+          Already have an account?
+          <a (click)="toLogin()">Log In</a>
+        </p>
+      </div>
+    </form>
+  </div>
+  @if(!isCorrect){
+  <div class="error-popup">mail already exists...</div>
+  }
+</body>

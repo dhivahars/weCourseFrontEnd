@@ -1,0 +1,23 @@
+<button class="back-btn" (click)="redirectToHome()">← Back to Home</button>
+@if(!loading && course){
+<div class="course-details">
+  <h2>{{ course.title }}</h2>
+  <p>{{ course.description }}</p>
+  <p><strong>Mentor:</strong> {{ course.mentorName?.name }}</p>
+  <p><strong>Capacity:</strong> {{ course.capacity }}</p>
+  <div class="btn">
+    <div>
+      <we-button
+        label="Enroll"
+        variant="primary"
+        class="enroll-btn"
+        (click)="onEnroll()"
+      ></we-button>
+    </div>
+  </div>
+</div>
+} @if(errorMessage){
+<div class="error-pop">
+  {{ errorMessage }}
+</div>
+}

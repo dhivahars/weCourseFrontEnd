@@ -1,0 +1,60 @@
+<body>
+  <div class="container">
+    <button class="close-btn" type="button" (click)="close()">✕</button>
+    <div class="title">Log in or create account</div>
+
+    <form [formGroup]="login" (ngSubmit)="onSubmit()">
+      <!-- email -->
+      <div class="fields">
+        <div>
+          <we-input
+            label="Email"
+            type="text"
+            id="email"
+            placeholder="example@gamil.com"
+            formControlName="email"
+          />
+        </div>
+        @if(f['email']?.invalid && f['email']?.touched){
+        <div class="error">
+          @if(f['email']?.errors?.['required']){
+          <div>Email is required</div>
+          }
+        </div>
+        }
+      </div>
+      <!-- password -->
+      <div class="fields">
+        <div>
+          <we-input
+            label="Password"
+            [type]="passType"
+            id="password"
+            placeholder="Password@123"
+            formControlName="password"
+          />
+        </div>
+        @if(f['password']?.invalid && f['password']?.touched){
+        <div class="error">
+          @if(f['password']?.errors?.['required']){
+          <div>Password is required</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="info">
+        <button type="button" (click)="onShowPassword()" class="showPass">ShowPassword</button>
+      </div>
+      <div class="btn">
+        <we-button label="Login" />
+      </div>
+      <div class="switch">
+        <span>doesn't have an account?</span
+        ><button type="button" routerLink="/app-register" class="showPass">SignUp</button>
+      </div>
+    </form>
+    @if(!isCorrect){
+    <div class="error-popup">login failed...</div>
+    }
+  </div>
+</body>

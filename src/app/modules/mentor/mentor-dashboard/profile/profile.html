@@ -1,0 +1,16 @@
+<section class="profile-section">
+  <h1>Welcome, {{ mentor.name }}</h1>
+  <p><strong>Email:</strong> {{ mentor.email }}</p>
+  @if (mentor.skills?.length > 0) {
+  <div class="skills">
+    <h3>Skills</h3>
+    <div class="skill-list">
+      @for (skill of mentor.skills; track skill) {
+      <span class="skill-chip">{{ skill }}</span>
+      }
+    </div>
+  </div>
+  } @else {
+  <p>No skills added yet.</p>
+  }
+</section>

@@ -1,0 +1,76 @@
+<div class="dashboard">
+  <!-- Top Navbar -->
+  <header class="top-nav">
+    <div class="logo">WeCourse</div>
+    <nav>
+      <button class="btn primary" (click)="onNavigate('/app-home')">
+        <span class="material-symbols-outlined">home</span>
+        Home
+      </button>
+
+      <button class="btn primary" (click)="onNavigate('/student-dashboard')">
+        <span class="material-symbols-outlined">person</span>
+        Profile
+      </button>
+
+      <we-button label="Sign Out" variant="danger" (onClick)="onSignOut()">
+        <span class="material-symbols-outlined">logout</span>
+      </we-button>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="content">
+    @if(student){
+    <section class="profile-section">
+      <h1>Welcome, {{ student.name }}</h1>
+      <p><strong>Email:</strong> {{ student.email }}</p>
+
+      <!-- Skills -->
+      @if(student.skills?.length){
+      <div class="skills">
+        <h3>Skills</h3>
+        <div class="skill-list">
+          @for(skill of student.skills; track skill){
+          <span>{{ skill }}</span>
+          }
+        </div>
+      </div>
+      }
+    </section>
+    } @else {
+    <ng-template>
+      <p class="loading">Loading your dashboard...</p>
+    </ng-template>
+    }
+
+    <!-- Enrollments -->
+    @if(enrollments?.length){ @for(enrollment of enrollments; track enrollment.id){
+
+    <div class="course-card" (click)="openCourse(enrollment)" style="cursor: pointer">
+      <h4>{{ enrollment.courseTitle }}</h4>
+
+      <span
+        [ngClass]="
+          enrollment.status === 'COMPLETED'
+            ? 'completed'
+            : enrollment.status === 'IN_PROGRESS'
+            ? 'progress'
+            : 'halfway'
+        "
+      >
+        {{
+          enrollment.status === 'COMPLETED'
+            ? 'Completed'
+            : enrollment.status === 'IN_PROGRESS'
+            ? 'In Progress'
+            : 'Halfway'
+        }}
+      </span>
+
+      <p>Progress: {{ enrollment.progressPercentage }}%</p>
+    </div>
+
+    } } 
+  </main>
+</div>

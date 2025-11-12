@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="fields">
+    <label [for]="id">{{ label }}</label>
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [id]="id"
+      [value]="value"
+      (input)="onInput($event)"
+      (blur)="onBlur()"
+    />
+  </div>
+</div>
