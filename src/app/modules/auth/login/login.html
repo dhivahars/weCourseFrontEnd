@@ -53,8 +53,8 @@
         ><button type="button" routerLink="/app-register" class="showPass">SignUp</button>
       </div>
     </form>
-    @if(!isCorrect){
-    <div class="error-popup">login failed...</div>
+    @if(errorMessage){
+    <div class="error-popup">{{errorMessage}}</div>
     }
   </div>
 </body>

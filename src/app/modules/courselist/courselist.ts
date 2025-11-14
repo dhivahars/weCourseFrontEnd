@@ -7,7 +7,7 @@ import { CourseService } from '../../services/course-service';
 @Component({
   selector: 'app-courselist',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './courselist.html',
   styleUrl: './courselist.scss',
 })
@@ -40,9 +40,5 @@ export class Courselist implements OnInit {
     if (courseId != null) {
       this.router.navigate(['/app-course', courseId]);
     }
-  }
-
-  trackByCourseId(index: number, course: any): number {
-    return course?.id ?? index;
   }
 }

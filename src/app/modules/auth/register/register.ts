@@ -112,19 +112,17 @@ export class Register implements OnInit {
       this.signup.markAllAsTouched();
       return;
     }
-    // this.route.navigate(['/app-login'])
-    // console.log(this.signup.value);
 
     this.auth.onRegister(this.signup.value).subscribe({
       next: (res: any) => {
-        console.log('Registration successful:', res);
+        console.log('Registration successful:', res.data);
         this.route.navigate(['/app-login']); // Navigate to login
       },
       error: (err) => {
         this.errorMessage=err.error?.message;      
         //console.log(this.errorMessage);
         setTimeout(() => {
-          this.isCorrect = true;
+          this.errorMessage=''
         }, 3000);
         console.error('Registration failed:', err);
       },

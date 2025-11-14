@@ -1,6 +1,7 @@
-import { Component, HostListener, OnDestroy, signal } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Footer } from './shared/footer/footer';
+import { AuthService } from './services/auth-service';
 
 @Component({
   selector: 'app-root',

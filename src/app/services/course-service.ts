@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class CourseService {
   private baseUrl = 'http://localhost:8080/courses';
-  email:string | null=localStorage.getItem('email')
+   email:string | null=localStorage.getItem('email')
+   skill!:any;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -17,12 +18,10 @@ export class CourseService {
     return new HttpHeaders({ Authorization: `Bearer ${token}` });
   }
 
-  // Get all courses
   getCourses(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/list`, { headers: this.getHeaders() });
   }
 
-  // Get course by id
   getCourseById(id: number): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/search/${id}`, { headers: this.getHeaders() });
   }
@@ -51,8 +50,7 @@ export class CourseService {
     });
   }
  
-  // Create new course
-  createCourse(courseData: any): Observable<any> {
+   createCourse(courseData: any): Observable<any> {
     return this.http.post(`http://localhost:8080/mentor/create/course?email=${this.email}`,courseData, {
       headers: this.getHeaders(),
     });
@@ -71,7 +69,8 @@ export class CourseService {
   deleteCourse(courseId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/delete/${courseId}`, {
       headers: this.getHeaders(),
-      responseType: 'text' // because backend returns a String message
+      responseType: 'text'
     });
-  }
+ }
+ 
 }

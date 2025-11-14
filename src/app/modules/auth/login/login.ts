@@ -16,8 +16,7 @@ type Pass = 'text' | 'password';
 export class Login implements OnInit {
   login!: FormGroup;
   passType: Pass = 'password';
-  isCorrect: boolean = true;
-
+  errorMessage!:string;
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
@@ -38,7 +37,7 @@ export class Login implements OnInit {
 
     this.auth.onLogin(this.login.value).subscribe({
       next: (res: any) => {
-        console.log('Login response:', res);
+        console.log('Login response:', res.message);
         localStorage.setItem('token', res.data);
         this.auth.getUser().subscribe({
           next: (user: any) => {
@@ -54,10 +53,9 @@ export class Login implements OnInit {
         });
       },
       error: (err) => {
-        this.isCorrect = false;
-        console.log(this.isCorrect);
+        this.errorMessage=err.error?.message
         setTimeout(() => {
-          this.isCorrect = true;
+          this.errorMessage=''
         }, 3000);
       },
     });

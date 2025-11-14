@@ -27,11 +27,11 @@
       <p><strong>Email:</strong> {{ student.email }}</p>
 
       <!-- Skills -->
-      @if(student.skills?.length){
+      @if(skills?.length){
       <div class="skills">
         <h3>Skills</h3>
         <div class="skill-list">
-          @for(skill of student.skills; track skill){
+          @for(skill of skills; track skill){
           <span>{{ skill }}</span>
           }
         </div>

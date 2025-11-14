@@ -10,8 +10,7 @@ import { constructorChecks } from '@angular/cdk/schematics';
 
 @Component({
   selector: 'app-course',
-  standalone: true, // ✅ required if this is a standalone component
-  imports: [CommonModule, Button, RouterLink], // ✅ Add this
+  imports: [CommonModule, Button],
   templateUrl: './course.html',
   styleUrls: ['./course.scss'],
 })
@@ -29,7 +28,6 @@ export class Course {
   ) {}
 
   ngOnInit(): void {
-    // ✅ Get course ID from URL
     const idParam = this.route.snapshot.paramMap.get('id');
 
     if (idParam) {
