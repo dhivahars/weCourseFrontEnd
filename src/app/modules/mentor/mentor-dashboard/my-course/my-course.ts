@@ -103,7 +103,7 @@ export class MyCourse implements OnInit {
       this.courseService.updateCourse(this.editingCourseId, courseData).subscribe({
         next: () => {
           this.loadCourses();
-          //this.closeModal();
+          // this.closeModal();
           alert(' Course updated successfully!');
         },
         error: () => console.log("error updating")
@@ -113,7 +113,7 @@ export class MyCourse implements OnInit {
       this.courseService.createCourse(courseData).subscribe({
         next: () => {
           this.loadCourses();
-          //this.closeModal();
+          this.closeModal();
           alert(' Course created successfully!');
         },
         error: () => alert(' Error creating course'),
