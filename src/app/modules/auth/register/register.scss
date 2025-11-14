@@ -1,5 +1,5 @@
 // ===== Signup Page Styling =====
-
+$hover-bgcolor: #f0f6ff;
 * {
   font-family: 'Source Sans Pro', Arial, sans-serif;
   box-sizing: border-box;
@@ -78,7 +78,7 @@ body {
 
   select {
     padding: 0.7rem;
-    border: 1px solid #c3cad9;
+    border: 1px solid #7b8491;
     border-radius: 8px;
     font-size: 1rem;
     outline: none;
@@ -93,23 +93,86 @@ body {
 }
 
 // ===== Material Skills Dropdown =====
+// .skills-field {
+//   width: 100%;
+//   margin-bottom: 1.5rem;
+//   outline: #C3CAD9;
+
+//   ::ng-deep .mat-mdc-form-field-flex {
+//     background-color: #ffffff;
+//     border-radius: 8px;
+//   }
+
+//   ::ng-deep .mat-mdc-select-trigger {
+//     font-size: 1rem;
+//   }
+
+//   ::ng-deep .mat-mdc-form-field-focus-overlay {
+//     background-color: transparent !important;
+//   }
+// }
+
+
 .skills-field {
   width: 100%;
   margin-bottom: 1.5rem;
 
+  // REMOVE Material notched outline
+  ::ng-deep .mdc-notched-outline,
+  ::ng-deep .mdc-notched-outline__leading,
+  ::ng-deep .mdc-notched-outline__notch,
+  ::ng-deep .mdc-notched-outline__trailing {
+    display: none !important;
+  }
+  
+  ::ng-deep .mat-mdc-form-field,
+::ng-deep .mat-mdc-text-field-wrapper,
+::ng-deep .mat-mdc-form-field-flex {
+  width: 100% !important;
+}
+
+
+  // REMOVE internal bottom border that is causing the double-border issue
+  ::ng-deep .mat-mdc-form-field-infix {
+    border-bottom: none !important;
+  }
+
+  // REMOVE underline highlight (Angular Material still adds this visually)
+  ::ng-deep .mdc-line-ripple {
+    display: none !important;
+  }
+
+  // THE ONLY BORDER we keep (your custom one)
   ::ng-deep .mat-mdc-form-field-flex {
-    background-color: #f5f7fb;
-    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #7b8491 !important;
+    border-radius: 0.5rem !important;
+    padding: 0.4rem 0.6rem !important;
+    height: 2.7rem !important;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
   }
 
-  ::ng-deep .mat-mdc-select-trigger {
-    font-size: 1rem;
+  // Hover style
+  ::ng-deep .mat-mdc-form-field-flex:hover {
+    background-color: #f0f6ff !important;
   }
 
-  ::ng-deep .mat-mdc-form-field-focus-overlay {
-    background-color: transparent !important;
+  // Focus style
+  ::ng-deep .mat-mdc-form-field-flex.mat-focused {
+    border: 1px solid #3b82f6 !important;
+    box-shadow: 0 0 2px rgba(59, 130, 246, 1);
+  }
+
+  // Label style
+  ::ng-deep .mat-mdc-floating-label {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #0f1114 !important;
   }
 }
+
 
 // ===== Error messages =====
 .error {
@@ -185,3 +248,17 @@ body {
     transform: translateY(0);
   }
 }
+/* Force Angular Material field to take full width */
+.drop-down,
+.skills-field,
+mat-form-field,
+::ng-deep .mat-mdc-form-field {
+  width: 100% !important;
+  display: block !important;
+}
+
+/* Inner flex wrapper must also stretch */
+::ng-deep .mat-mdc-form-field-flex {
+  width: 100% !important;
+}
+

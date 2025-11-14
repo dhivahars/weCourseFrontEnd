@@ -100,14 +100,14 @@ export class MyCourse implements OnInit {
         error: () => alert(' Error updating course'),
       });
     } else {
-      // this.courseService.createCourse(courseData).subscribe({
-      //   next: () => {
-      //     this.loadCourses();
-      //     this.closeModal();
-      //     alert(' Course created successfully!');
-      //   },
-      //   error: () => alert(' Error creating course'),
-      // });
+      this.courseService.createCourse(courseData).subscribe({
+        next: () => {
+          this.loadCourses();
+          this.closeModal();
+          alert('Course created successfully!');
+        },
+        error: () => alert(' Error creating course'),
+      });
     }
   }
 

@@ -14,8 +14,6 @@
           <div class="button">
             <we-button label="Edit" (click)="openModal(course)"> <span class="material-symbols-outlined">edit</span> Edit</we-button>
             <we-button label="Delete" variant="danger" (click)="deleteCourse(course.id)"><span class="material-symbols-outlined">delete</span></we-button>
-            <!-- <button (click)="openModal(course)">Edit</button>
-            <button (click)="deleteCourse(course.id)">Delete</button> -->
           </div>
         </div>
       }
@@ -42,17 +40,8 @@
        <we-input label="Skill" type="text" id="skill" placeholder="Enter Skill" formControlName="skill"></we-input>
        <we-input label="Prerequisites" type="text" id="prerequisites" placeholder="Enter Prerequisites in (comma separated)" formControlName="prerequisites"></we-input>
         
-      <!-- <input formControlName="title" placeholder="Course Title" /> -->
-      <!-- <textarea formControlName="description" placeholder="Description"></textarea> -->
-      <!-- <input formControlName="capacity" type="number" placeholder="Capacity" /> -->
-      <!-- <input formControlName="skill" placeholder="Skill" /> -->
-      <!-- <input formControlName="prerequisites" placeholder="Prerequisites (comma separated)" />
-      <input formControlName="url" placeholder="Course URL" /> -->
-
       <div class="modal-button">
         <we-button label="{{ editingCourseId ? 'Update' : 'Create' }}" type="submit"></we-button>
-        <!-- <button type="submit">{{ editingCourseId ? 'Update' : 'Create' }}</button> -->
-        <!-- <button type="button" (click)="closeModal()">Cancel</button> -->
         <we-button label="cancel"  (click)="closeModal()"></we-button>    
       </div>
       </div>

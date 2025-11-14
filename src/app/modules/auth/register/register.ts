@@ -33,7 +33,8 @@ import { AuthService } from '../../../services/auth-service';
 export class Register implements OnInit {
   signup!: FormGroup;
   skillsList: string[] = ['Angular', 'Web Design', 'BackEndJs', 'Python', 'Core Java', 'SQL', 'Advance Java'];
-  isCorrect = true;
+  errorMessage!:string;
+
 
   constructor(private sb: FormBuilder, private route: Router, private auth: AuthService) {}
 
@@ -59,7 +60,7 @@ export class Register implements OnInit {
         ],
         confirmpassword: ['', Validators.required],
         role: ['', Validators.required],
-        skills: [[], Validators.required],
+        skills: [[]],
       },
       { validators: this.passwordValidator }
     );
@@ -87,18 +88,16 @@ export class Register implements OnInit {
       this.signup.markAllAsTouched();
       return;
     }
-    // this.route.navigate(['/app-login'])
-    // console.log(this.signup.value);
 
     this.auth.onRegister(this.signup.value).subscribe({
       next: (res: any) => {
-        console.log('Registration successful:', res);
+        console.log('Registration successful:', res.data);
         this.route.navigate(['/app-login']); // Navigate to login
       },
       error: (err) => {
-        this.isCorrect = false;
+        this.errorMessage=err?.value
         setTimeout(() => {
-          this.isCorrect = true;
+          this.errorMessage=''
         }, 3000);
         console.error('Registration failed:', err);
       },

@@ -5,6 +5,8 @@ import { ModulepageService } from '../../services/modulepage';
 import jsPDF from 'jspdf';
 import { StudentDashBoard } from '../student/student-dash-board/student-dash-board';
 import { AuthService } from '../../services/auth-service';
+import { Observable } from 'rxjs';
+import { CourseService } from '../../services/course-service';
 @Component({
   selector: 'app-module-page',
   templateUrl: './module-page.html',
@@ -15,14 +17,16 @@ export class ModulePage implements OnInit, OnDestroy {
   enrollmentId!: number;
   errorMessage!: string;
   hasScrolledToBottom = false;
-
+  isCompleted:boolean=false;
+  email=localStorage.getItem('email')
   content!: string;
+  skills:string[]=[];
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private router: Router,
     private mservice: ModulepageService,
-    private auth:AuthService
+    private sdash:CourseService
   ) {}
 
   ngOnInit(): void {
@@ -63,16 +67,10 @@ export class ModulePage implements OnInit, OnDestroy {
   }
 
   markComplete() {
-    if (!this.hasScrolledToBottom) {
-      alert('Scroll to the bottom first.');
-      return;
-    }
-
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
 
     console.log('Starting PATCH request...');
-
     this.http
       .patch(
         `http://localhost:8080/enroll/update/progress?enrollmentId=${this.enrollmentId}&progressPercentage=100`,
@@ -82,9 +80,6 @@ export class ModulePage implements OnInit, OnDestroy {
       .subscribe({
         next: (res) => {
           this.redirectToDashboard();
-          this.auth.getUser().subscribe({
-            next:(res)=>{console.log(res)},
-          })
         },
         error: (err) => {
           this.errorMessage = err.error?.message || 'Update failed.';
@@ -96,9 +91,9 @@ export class ModulePage implements OnInit, OnDestroy {
 
   downloadPDF() {
   const doc = new jsPDF({
-    orientation: 'p', // portrait
-    unit: 'pt',       // points
-    format: 'a4'      // A4 paper
+    orientation: 'p', 
+    unit: 'pt',       
+    format: 'a4'      
   });
 
   const pageHeight = doc.internal.pageSize.height;
@@ -112,14 +107,13 @@ export class ModulePage implements OnInit, OnDestroy {
   let y = marginTop;
 
   lines.forEach((line: string) => {
-    // Check if next line will go beyond the page bottom
     if (y + lineHeight > pageHeight - 40) {
       doc.addPage();
-      y = marginTop; // Reset y only when a new page is added
+      y = marginTop; 
     }
 
     doc.text(line, marginLeft, y);
-    y += lineHeight; // Move down for the next line
+    y += lineHeight;
   });
   doc.save('module.pdf');
 }

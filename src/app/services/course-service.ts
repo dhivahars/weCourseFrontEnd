@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class CourseService {
   private baseUrl = 'http://localhost:8080/courses';
+   email:string | null=localStorage.getItem('email')
+   skill!:any;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -16,48 +18,33 @@ export class CourseService {
     return new HttpHeaders({ Authorization: `Bearer ${token}` });
   }
 
-  // Get all courses
   getCourses(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/list`, { headers: this.getHeaders() });
   }
 
-  // Get course by id
   getCourseById(id: number): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/search/${id}`, { headers: this.getHeaders() });
   }
 
-  // Optionally: store courses in memory for fast access
-  private coursesCache: any[] = [];
-
-  cacheCourses(courses: any[]) {
-    this.coursesCache = courses;
-  }
-
-  getCachedCourseById(id: number) {
-    return this.coursesCache.find((course) => course.id === id);
-  }
-    /**  Get courses created by this mentor */
+    //  Get courses created by this mentor
   getCoursesByMentor(mentorEmail: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/mentor/${mentorEmail}`, {
       headers: this.getHeaders(),
     });
   }
  
-  /** Get students enrolled under this mentor */
   getStudentsUnderMentor(mentorId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/mentor/${mentorId}/students`, {
       headers: this.getHeaders()
     });
   }
  
-  // /** Create new course */
-  // createCourse(courseData: any): Observable<any> {
-  //   return this.http.post(`${this.baseUrl}/create/?email=${localStorage.getItem('email')}`, (courseData), {
-  //     headers: this.getAuthHeaders(),
-  //   });
-  // }
+   createCourse(courseData: any): Observable<any> {
+    return this.http.post(`http://localhost:8080/mentor/create/course?email=${this.email}`,courseData, {
+      headers: this.getHeaders(),
+    });
+  }
  
-  /** Update course */
   updateCourse(courseId: number, courseData: any): Observable<any> {
     console.log(courseData);
    
@@ -66,11 +53,11 @@ export class CourseService {
     });
   }
  
-  /**  Delete course */
   deleteCourse(courseId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/delete/${courseId}`, {
       headers: this.getHeaders(),
-      responseType: 'text' // because backend returns a String message
+      responseType: 'text'
     });
-  }
+ }
+ 
 }

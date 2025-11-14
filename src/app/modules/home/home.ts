@@ -20,7 +20,7 @@ export class Home {
     this.router.navigate(['/app-login']);
   }
   isLogged(): boolean {
-    return !localStorage.getItem('token');
+    return this.auth.isLoggedIn();
   }
   openSignup() {
     this.router.navigate(['/app-register']);
@@ -28,7 +28,7 @@ export class Home {
   getRole() {
     this.auth.getUser().subscribe({
       next: (user) => {
-        this.role = user.role; // assuming user object has a "role" property
+        this.role = user.role;
         console.log('User role:', this.role);
       },
       error: (err) => console.error(err),
@@ -40,7 +40,7 @@ export class Home {
   onNavigate(a: string) {}
   onSignOut(): void {
     localStorage.clear();
-    this.auth.clearUserCache(); // clear cached user
+    this.auth.clearUserCache();
     this.router.navigate(['/app-login']);
   }
 }

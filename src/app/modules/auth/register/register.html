@@ -19,7 +19,7 @@
           @if (r['name']?.errors?.['required']) {
           <div>Username is required</div>
           } @if (r['name']?.errors?.['pattern']) {
-          <div>Only alphabets allowed (4–10 characters)</div>
+          <div>Only alphabets allowed (4 &#8211; 10 characters)</div>
           }
         </div>
         }
@@ -119,14 +119,15 @@
       </div>
 
       <!-- Skills -->
-      <mat-form-field appearance="fill" class="skills-field">
+      <label for="">Skills</label><div class="drop-down">
+      <mat-form-field appearance="fill" class="skills-field" style="width: 400px;">
         <mat-label>Skills</mat-label>
         <mat-select formControlName="skills" multiple>
           @for (skill of skillsList; track $index) {
           <mat-option [value]="skill">{{ skill }}</mat-option>
           }
         </mat-select>
-      </mat-form-field>
+      </mat-form-field></div>
 
       <!-- Submit -->
       <div class="btn">
@@ -142,7 +143,7 @@
       </div>
     </form>
   </div>
-  @if(!isCorrect){
-  <div class="error-popup">mail already exists...</div>
+  @if(errorMessage){
+  <div class="error-popup">{{errorMessage}}</div>
   }
 </body>

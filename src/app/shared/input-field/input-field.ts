@@ -3,7 +3,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
 
 @Component({
   selector: 'we-input',
-  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './input-field.html',
   styleUrl: './input-field.scss',
