@@ -12,7 +12,16 @@ export class Profile implements OnInit{
   constructor(private auth:AuthService){}
   ngOnInit(): void {
     this.auth.getUser().subscribe({
-      next:(user)=>this.mentor=user,
+      next:(user)=>{
+        const email=user.email;
+        this.mentor=user;
+      this.auth.getAbout(email).subscribe({
+        next:(res:any)=>{
+          this.mentor.about=res.about; 
+        },
+        error:(err)=>console.log('Error loading Mentor Details:',err)
+      });
+    },
       error:(err)=>console.log("'Error loading mentor:', err")
     })
   }

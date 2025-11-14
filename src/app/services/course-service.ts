@@ -26,6 +26,16 @@ export class CourseService {
     return this.http.get<any>(`${this.baseUrl}/search/${id}`, { headers: this.getHeaders() });
   }
 
+  // Optionally: store courses in memory for fast access
+  private coursesCache: any[] = [];
+
+  cacheCourses(courses: any[]) {
+    this.coursesCache = courses;
+  }
+
+  getCachedCourseById(id: number) {
+    return this.coursesCache.find((course) => course.id === id);
+  }
     //  Get courses created by this mentor
   getCoursesByMentor(mentorEmail: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/mentor/${mentorEmail}`, {
@@ -33,6 +43,7 @@ export class CourseService {
     });
   }
  
+  // Get students enrolled under this mentor 
   getStudentsUnderMentor(mentorId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/mentor/${mentorId}/students`, {
       headers: this.getHeaders()
@@ -45,6 +56,7 @@ export class CourseService {
     });
   }
  
+  // Update course
   updateCourse(courseId: number, courseData: any): Observable<any> {
     console.log(courseData);
    
@@ -53,6 +65,7 @@ export class CourseService {
     });
   }
  
+  //  Delete course 
   deleteCourse(courseId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/delete/${courseId}`, {
       headers: this.getHeaders(),
