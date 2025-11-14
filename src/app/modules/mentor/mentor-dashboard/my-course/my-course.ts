@@ -5,6 +5,8 @@ import { AuthService } from '../../../../services/auth-service';
 import { InputField } from '../../../../shared/input-field/input-field';
 import { Button } from '../../../../shared/button/button';
 import { CourseService } from '../../../../services/course-service';
+import { Login } from '../../../auth/login/login';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-my-course',
@@ -19,11 +21,13 @@ export class MyCourse implements OnInit {
   courseForm!: FormGroup;
   showModal = false;
   editingCourseId: number | null = null;
+  availableSeats!:any;
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private http:HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +51,13 @@ export class MyCourse implements OnInit {
   loadCourses(): void {
     if (!this.mentor?.email) return;
     this.courseService.getCoursesByMentor(this.mentor.email).subscribe({
-      next: (data) => (this.courses = data),
+      next: (data) => {
+        this.courses = data
+
+        //   this.http.get(`http://localhost:8080/courses/capacity/${data.map((course:any)=>course.id)}`).subscribe({
+        //   next:(res)=>this.availableSeats=res
+        // })
+      },
       error: (err) => console.error('Error loading courses:', err),
     });
   }
@@ -64,7 +74,6 @@ export class MyCourse implements OnInit {
         prerequisites: Array.isArray(course.prerequisites)
           ? course.prerequisites.join(', ')
           : '',
-        url: course.url
       });
     } else {
       this.editingCourseId = null;
@@ -94,20 +103,21 @@ export class MyCourse implements OnInit {
       this.courseService.updateCourse(this.editingCourseId, courseData).subscribe({
         next: () => {
           this.loadCourses();
-          this.closeModal();
+          //this.closeModal();
           alert(' Course updated successfully!');
         },
-        error: () => alert(' Error updating course'),
+        error: () => console.log("error updating")
+        ,
       });
     } else {
-      // this.courseService.createCourse(courseData).subscribe({
-      //   next: () => {
-      //     this.loadCourses();
-      //     this.closeModal();
-      //     alert(' Course created successfully!');
-      //   },
-      //   error: () => alert(' Error creating course'),
-      // });
+      this.courseService.createCourse(courseData).subscribe({
+        next: () => {
+          this.loadCourses();
+          //this.closeModal();
+          alert(' Course created successfully!');
+        },
+        error: () => alert(' Error creating course'),
+      });
     }
   }
 

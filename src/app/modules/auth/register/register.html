@@ -119,6 +119,16 @@
       </div>
 
       <!-- Skills -->
+      @if(selectedRole ==='mentor') {
+      <div class="about">
+        <div>
+        <label for="about">About</label>
+        </div>
+        <div>
+        <textarea type="text" placeholder="About mentor" formControlName="about"></textarea>
+        </div>
+      </div>
+      } @if(selectedRole=== 'student') {
       <mat-form-field appearance="fill" class="skills-field">
         <mat-label>Skills</mat-label>
         <mat-select formControlName="skills" multiple>
@@ -127,7 +137,7 @@
           }
         </mat-select>
       </mat-form-field>
-
+      }
       <!-- Submit -->
       <div class="btn">
         <we-button label="Sign Up" type="submit"></we-button>
@@ -142,7 +152,7 @@
       </div>
     </form>
   </div>
-  @if(!isCorrect){
-  <div class="error-popup">mail already exists...</div>
+  @if(errorMessage){
+  <div class="error-popup">{{ errorMessage }}</div>
   }
 </body>

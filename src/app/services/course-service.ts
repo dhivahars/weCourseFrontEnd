@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CourseService {
   private baseUrl = 'http://localhost:8080/courses';
+  email:string | null=localStorage.getItem('email')
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -36,28 +37,28 @@ export class CourseService {
   getCachedCourseById(id: number) {
     return this.coursesCache.find((course) => course.id === id);
   }
-    /**  Get courses created by this mentor */
+    //  Get courses created by this mentor
   getCoursesByMentor(mentorEmail: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/mentor/${mentorEmail}`, {
       headers: this.getHeaders(),
     });
   }
  
-  /** Get students enrolled under this mentor */
+  // Get students enrolled under this mentor 
   getStudentsUnderMentor(mentorId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/mentor/${mentorId}/students`, {
       headers: this.getHeaders()
     });
   }
  
-  // /** Create new course */
-  // createCourse(courseData: any): Observable<any> {
-  //   return this.http.post(`${this.baseUrl}/create/?email=${localStorage.getItem('email')}`, (courseData), {
-  //     headers: this.getAuthHeaders(),
-  //   });
-  // }
+  // Create new course
+  createCourse(courseData: any): Observable<any> {
+    return this.http.post(`http://localhost:8080/mentor/create/course?email=${this.email}`,courseData, {
+      headers: this.getHeaders(),
+    });
+  }
  
-  /** Update course */
+  // Update course
   updateCourse(courseId: number, courseData: any): Observable<any> {
     console.log(courseData);
    
@@ -66,7 +67,7 @@ export class CourseService {
     });
   }
  
-  /**  Delete course */
+  //  Delete course 
   deleteCourse(courseId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/delete/${courseId}`, {
       headers: this.getHeaders(),

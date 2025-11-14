@@ -39,7 +39,7 @@ export class Login implements OnInit {
     this.auth.onLogin(this.login.value).subscribe({
       next: (res: any) => {
         console.log('Login response:', res);
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('token', res.data);
         this.auth.getUser().subscribe({
           next: (user: any) => {
             console.log('User:', user);

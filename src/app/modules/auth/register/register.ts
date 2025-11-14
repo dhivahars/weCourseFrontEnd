@@ -32,8 +32,28 @@ import { AuthService } from '../../../services/auth-service';
 })
 export class Register implements OnInit {
   signup!: FormGroup;
-  skillsList: string[] = ['Angular', 'Web Design', 'BackEndJs', 'Python', 'Core Java', 'SQL', 'Advance Java'];
+  skillsList: string[] = [
+  "Core Java",
+  "Advanced Java",
+  "FrontEndJs",
+  "BackEndJs",
+  "Python",
+  "Machine Learning",
+  "MySQL",
+  "MongoDB",
+  "AWS",
+  "DevOps",
+  "C++",
+  "Web Design",
+  "Angular",
+  "API Design",
+  "Cyber Security",
+  "Flutter",
+  "AI & Deep Learning",
+  "Mearn Stack"
+];
   isCorrect = true;
+  errorMessage!:string;
 
   constructor(private sb: FormBuilder, private route: Router, private auth: AuthService) {}
 
@@ -59,7 +79,8 @@ export class Register implements OnInit {
         ],
         confirmpassword: ['', Validators.required],
         role: ['', Validators.required],
-        skills: [[], Validators.required],
+        skills: [[]],
+        about:['']
       },
       { validators: this.passwordValidator }
     );
@@ -82,6 +103,10 @@ export class Register implements OnInit {
   toLogin() {
     this.route.navigate(['/app-login']);
   }
+  get selectedRole()
+  {
+    return this.signup.get('role')?.value;
+  }
   onSubmit(): void {
     if (this.signup.invalid) {
       this.signup.markAllAsTouched();
@@ -96,7 +121,8 @@ export class Register implements OnInit {
         this.route.navigate(['/app-login']); // Navigate to login
       },
       error: (err) => {
-        this.isCorrect = false;
+        this.errorMessage=err.error?.message;      
+        //console.log(this.errorMessage);
         setTimeout(() => {
           this.isCorrect = true;
         }, 3000);
