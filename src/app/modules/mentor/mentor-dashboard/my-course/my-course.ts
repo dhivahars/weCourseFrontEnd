@@ -5,7 +5,7 @@ import { AuthService } from '../../../../services/auth-service';
 import { InputField } from '../../../../shared/input-field/input-field';
 import { weButton } from '../../../../shared/we-button/button';
 import { CourseService } from '../../../../services/course-service';
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-my-course',
@@ -27,8 +27,7 @@ export class MyCourse implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private courseService: CourseService,
-    private http: HttpClient
+    private courseService: CourseService
   ) {}
 
   ngOnInit(): void {
@@ -54,10 +53,6 @@ export class MyCourse implements OnInit {
     this.courseService.getCoursesByMentor(this.mentor.email).subscribe({
       next: (data) => {
         this.courses = data;
-
-        //   this.http.get(`http://localhost:8080/courses/capacity/${data.map((course:any)=>course.id)}`).subscribe({
-        //   next:(res)=>this.availableSeats=res
-        // })
       },
       error: (err) => console.error('Error loading courses:', err),
     });

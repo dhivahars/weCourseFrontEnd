@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { InputField } from '../../shared/input-field/input-field';
+import { Component } from '@angular/core';
 import { weButton } from '../../shared/we-button/button';
-import { Router, RouterOutlet } from '@angular/router';
-import { Courselist } from '../courselist/courselist';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
 import { Courselist } from '../courselist/course-list';
 
