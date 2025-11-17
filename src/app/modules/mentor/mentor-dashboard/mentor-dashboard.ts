@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Button } from '../../../shared/button/button';
+import { weButton } from '../../../shared/we-button/button';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../services/auth-service';
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,7 @@ import { CourseService } from '../../../services/course-service';
 
 @Component({
   selector: 'mentor-dashboard',
-  imports: [Button, CommonModule,RouterLink,RouterOutlet],
+  imports: [weButton, CommonModule,RouterLink,RouterOutlet],
   templateUrl: './mentor-dashboard.html',
   styleUrls: ['./mentor-dashboard.scss'],
 })

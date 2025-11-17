@@ -210,3 +210,49 @@ $shadow: 0 4px 10px rgba(0, 86, 210, 0.1);
     padding: 0.8rem;
   }
 }
+.error-popup {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+
+  background-color: #ff4d4d;
+  color: white;
+  padding: 12px 18px;
+
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  animation: fadeIn 0.2s ease-out;
+  z-index: 9999;
+}
+.success-popup {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+
+  background-color: #28a21d;
+  color: white;
+  padding: 12px 18px;
+
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  animation: fadeIn 0.2s ease-out;
+  z-index: 9999;
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

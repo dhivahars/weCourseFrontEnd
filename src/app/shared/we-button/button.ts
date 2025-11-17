@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './button.html',
   styleUrl: './button.scss',
 })
-export class Button {
+export class weButton {
   @Input({ required: true }) label!: string;
   @Input() variant: 'primary' | 'secondary' | 'danger' = 'primary';
   @Input() disabled: boolean = false;

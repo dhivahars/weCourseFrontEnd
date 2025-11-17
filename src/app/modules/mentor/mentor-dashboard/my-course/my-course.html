@@ -2,48 +2,87 @@
   <h2>My Courses</h2>
 
   @if (courses.length > 0) {
-    <div class="card-container">
-      @for (course of courses; track course.id) {
-        <div class="course-card">
-          <h3>{{ course.title }}</h3>
-          <p class="desc">{{ course.description }}</p>
-          <p><strong>Seats Left:</strong>{{ course.capacity }}</p>
-          <p><strong>Skill:</strong> {{ course.skill }}</p>
-          <p><strong>No.of Enrollment</strong> {{ course.enrolledCount }}</p>
+  <div class="card-container">
+    @for (course of courses; track course.id) {
+    <div class="course-card">
+      <h3>{{ course.title }}</h3>
+      <p class="desc">{{ course.description }}</p>
+      <p><strong>Skill:</strong> {{ course.skill }}</p>
+      <p><strong>No.of Enrollment:</strong> {{ course.enrolledCount }}</p>
 
-          <div class="button">
-            <we-button label="Edit" (click)="openModal(course)"> <span class="material-symbols-outlined">edit</span> Edit</we-button>
-            <we-button label="Delete" variant="danger" (click)="deleteCourse(course.id)"><span class="material-symbols-outlined">delete</span></we-button>
-          </div>
-        </div>
-      }
+      <div class="button">
+        <we-button label="Edit" (click)="openModal(course)">
+          <span class="material-symbols-outlined">edit</span> Edit</we-button
+        >
+        <we-button label="Delete" variant="danger" (click)="deleteCourse(course.id)"
+          ><span class="material-symbols-outlined">delete</span></we-button
+        >
+      </div>
     </div>
+    }
+  </div>
   } @else {
-    <p class="no-course">No courses available.</p>
+  <p class="no-course">No courses available.</p>
   }
   <div class="add">
-  <we-button label="Add Course" (click)="openModal()"></we-button>
+    <we-button label="Add Course" (click)="openModal()"></we-button>
   </div>
 </section>
 
 <!--  Simple modal -->
 @if (showModal) {
-  <div class="container" (click)="closeModal()"></div>
-  <div class="modal">
-    <h1>{{ editingCourseId ? 'Edit Course' : 'Create Course' }}</h1>
-    
-    <form [formGroup]="courseForm">
-       <div class="field">
-       <we-input label="Course Title" type="text" id="title" placeholder="Enter Course Title" formControlName="title"></we-input>
-       <we-input label="Description" type="text" formControlName="description" placeholder="Provide description"></we-input>
-       <we-input label="Capacity" type="number" id="capacity" placeholder="Enter no.of Capacity" formControlName="capacity"></we-input>
-       <we-input label="Skill" type="text" id="skill" placeholder="Enter Skill" formControlName="skill"></we-input>
-       <we-input label="Prerequisites" type="text" id="prerequisites" placeholder="Enter Prerequisites in (comma separated)" formControlName="prerequisites"></we-input>
+<div class="container" (click)="closeModal()"></div>
+<div class="modal">
+  <h1>{{ editingCourseId ? 'Edit Course' : 'Create Course' }}</h1>
+
+  <form [formGroup]="courseForm">
+    <div class="field">
+      <we-input
+        label="Course Title"
+        type="text"
+        id="title"
+        placeholder="Enter Course Title"
+        formControlName="title"
+      ></we-input>
+      <we-input
+        label="Description"
+        type="text"
+        formControlName="description"
+        placeholder="Provide description"
+      ></we-input>
+      <we-input
+        label="Capacity"
+        type="number"
+        id="capacity"
+        placeholder="Enter no.of Capacity"
+        formControlName="capacity"
+      ></we-input>
+      <we-input
+        label="Skill"
+        type="text"
+        id="skill"
+        placeholder="Enter Skill"
+        formControlName="skill"
+      ></we-input>
+      <we-input
+        label="Prerequisites"
+        type="text"
+        id="prerequisites"
+        placeholder="Enter Prerequisites in (comma separated)"
+        formControlName="prerequisites"
+      ></we-input>
       <div class="modal-button">
         <we-button label="Cancel" (click)="closeModal()" variant="danger"></we-button>
-        <we-button (click)="onSubmit()" label="{{ editingCourseId ? 'Update' : 'Create' }}"></we-button>
+        <we-button
+          (click)="onSubmit()"
+          label="{{ editingCourseId ? 'Update' : 'Create' }}"
+        ></we-button>
       </div>
-      </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>
+} @if(errorMessage){
+<div class="error-popup">{{ errorMessage }}</div>
+} @if(successMessage){
+<div class="success-popup">{{ successMessage }}</div>
 }
