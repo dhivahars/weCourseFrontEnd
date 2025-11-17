@@ -51,7 +51,6 @@ export class Course {
     });
   }
   onEnroll() {
-    const headers = this.courseService.getHeaders();
     const email = localStorage.getItem('email');
 
     if (!email) {
@@ -62,8 +61,7 @@ export class Course {
     this.http
       .post(
         `http://localhost:8080/enroll/student/${email}/course/${this.courseId}`,
-        {},
-        { headers }
+        {}
       )
       .subscribe({
         next: (res) => {

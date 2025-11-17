@@ -22,8 +22,7 @@ export class ModulePage implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private http: HttpClient,
     private router: Router,
-    private mservice: ModulepageService,
-    private sdash: CourseService
+    private mservice: ModulepageService
   ) {}
 
   ngOnInit(): void {
@@ -48,14 +47,9 @@ export class ModulePage implements OnInit, OnDestroy {
 
   loadEnrollment() {
     const email = localStorage.getItem('email');
-    const token = localStorage.getItem('token');
-
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
 
     this.http
-      .get<any[]>(`http://localhost:8080/enroll/search/${email}`, { headers })
+      .get<any[]>(`http://localhost:8080/enroll/search/${email}`)
       .subscribe((data) => {
         const enrollment = data.find((e) => e.id === this.courseId);
         if (!enrollment) return;
@@ -64,15 +58,12 @@ export class ModulePage implements OnInit, OnDestroy {
   }
 
   markComplete() {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
 
     console.log('Starting PATCH request...');
     this.http
       .patch(
         `http://localhost:8080/enroll/update/progress?enrollmentId=${this.enrollmentId}&progressPercentage=100`,
-        {},
-        { headers }
+        {}
       )
       .subscribe({
         next: (res) => {

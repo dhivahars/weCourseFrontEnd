@@ -1,6 +1,6 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { weButton } from '../../shared/we-button/button';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
 import { Courselist } from '../courselist/course-list';
 

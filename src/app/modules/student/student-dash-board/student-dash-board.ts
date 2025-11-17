@@ -4,8 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { weButton } from '../../../shared/we-button/button';
-import { ModulePage } from '../../module-page/module-page';
-import { CourseService } from '../../../services/course-service';
 
 @Component({
   selector: 'student-dashboard',
@@ -28,13 +26,8 @@ export class StudentDashBoard implements OnInit {
         this.student = user;
         console.log('Student loaded:', this.student);
         if (this.student && this.student.id) {
-          const token = localStorage.getItem('token');
-
-          const headers = new HttpHeaders({
-            Authorization: `Bearer ${token}`,
-          });
           this.http
-            .get(`http://localhost:8080/enroll/search/${this.email}`, { headers })
+            .get(`http://localhost:8080/enroll/search/${this.email}`)
             .subscribe({
               next: (enrollments) => {
                 this.enrollments = enrollments;
@@ -45,7 +38,7 @@ export class StudentDashBoard implements OnInit {
               },
             });
           this.http
-            .get(`http://localhost:8080/student/skills/${this.email}`, { headers })
+            .get(`http://localhost:8080/student/skills/${this.email}`)
             .subscribe({
               next: (res: any) => {
                 this.skills = res.Skills;

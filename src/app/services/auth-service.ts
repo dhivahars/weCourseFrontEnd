@@ -24,12 +24,7 @@ export class AuthService {
     if (this.cachedUser) {
       return of(this.cachedUser);
     }
-
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.get<any>('http://localhost:8080/user/me', { headers }).pipe(
+    return this.http.get<any>('http://localhost:8080/user/me').pipe(
       tap((user) => {
         this.cachedUser = user;
         if (user && user.email) {
@@ -66,9 +61,6 @@ export class AuthService {
 
   getAbout(email: string) {
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    return this.http.get(`http://localhost:8080/mentor/about/${email}`, { headers });
+    return this.http.get(`http://localhost:8080/mentor/about/${email}`);
   }
 }
