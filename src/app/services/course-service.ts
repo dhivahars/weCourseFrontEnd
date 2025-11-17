@@ -10,6 +10,7 @@ export class CourseService {
   private baseUrl = 'http://localhost:8080/courses';
   email: string | null = localStorage.getItem('email');
   skill!: any;
+  mentorId!:number;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -41,10 +42,9 @@ export class CourseService {
     });
   }
 
-  getStudentsUnderMentor(mentorId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/mentor/${mentorId}/students`, {
-      headers: this.getHeaders(),
-    });
+  getStudentsUnderMentor(): Observable<any> {
+    return this.http.get(`http://localhost:8080/mentor/${this.email}/details`,{ headers: this.getHeaders(),})
+    
   }
 
   createCourse(courseData: any): Observable<any> {
