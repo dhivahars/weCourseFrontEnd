@@ -3,9 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModulepageService } from '../../services/modulepage';
 import jsPDF from 'jspdf';
-import { StudentDashBoard } from '../student/student-dash-board/student-dash-board';
-import { AuthService } from '../../services/auth-service';
-import { Observable } from 'rxjs';
 import { CourseService } from '../../services/course-service';
 @Component({
   selector: 'app-module-page',
@@ -17,16 +14,16 @@ export class ModulePage implements OnInit, OnDestroy {
   enrollmentId!: number;
   errorMessage!: string;
   hasScrolledToBottom = false;
-  isCompleted:boolean=false;
-  email=localStorage.getItem('email')
+  isCompleted: boolean = false;
+  email = localStorage.getItem('email');
   content!: string;
-  skills:string[]=[];
+  skills: string[] = [];
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private router: Router,
     private mservice: ModulepageService,
-    private sdash:CourseService
+    private sdash: CourseService
   ) {}
 
   ngOnInit(): void {
@@ -90,33 +87,33 @@ export class ModulePage implements OnInit, OnDestroy {
   }
 
   downloadPDF() {
-  const doc = new jsPDF({
-    orientation: 'p', 
-    unit: 'pt',       
-    format: 'a4'      
-  });
+    const doc = new jsPDF({
+      orientation: 'p',
+      unit: 'pt',
+      format: 'a4',
+    });
 
-  const pageHeight = doc.internal.pageSize.height;
-  const marginLeft = 40;
-  const marginTop = 50;
-  const maxWidth = 500;
-  const lineHeight = 20;
+    const pageHeight = doc.internal.pageSize.height;
+    const marginLeft = 40;
+    const marginTop = 50;
+    const maxWidth = 500;
+    const lineHeight = 20;
 
-  const lines = doc.splitTextToSize(this.content, maxWidth);
+    const lines = doc.splitTextToSize(this.content, maxWidth);
 
-  let y = marginTop;
+    let y = marginTop;
 
-  lines.forEach((line: string) => {
-    if (y + lineHeight > pageHeight - 40) {
-      doc.addPage();
-      y = marginTop; 
-    }
+    lines.forEach((line: string) => {
+      if (y + lineHeight > pageHeight - 40) {
+        doc.addPage();
+        y = marginTop;
+      }
 
-    doc.text(line, marginLeft, y);
-    y += lineHeight;
-  });
-  doc.save('module.pdf');
-}
+      doc.text(line, marginLeft, y);
+      y += lineHeight;
+    });
+    doc.save('module.pdf');
+  }
   redirectToDashboard() {
     this.router.navigate(['/student-dashboard']);
   }

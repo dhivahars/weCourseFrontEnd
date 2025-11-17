@@ -5,9 +5,9 @@ import { AuthService } from './services/auth-service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,Footer],
+  imports: [RouterOutlet, Footer],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('OnlineCourseHub');

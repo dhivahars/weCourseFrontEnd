@@ -45,13 +45,13 @@ export const routes: Routes = [
     component: ModulePage,
   },
   {
-    path:'mentor-dashboard',
-    component:mentorDashboard,
-    children:[
-      {path:'',redirectTo:'profile',pathMatch:'full'},
-      {path:'profile',component:Profile},
-      {path:'mycourse',component:MyCourse},
-      {path:'mystudent',component:MyStudents}
-    ]
+    path: 'mentor-dashboard',
+    component: mentorDashboard,
+    children: [
+      { path: '', redirectTo: 'profile', pathMatch: 'full' },
+      { path: 'profile', component: Profile },
+      { path: 'mycourse', component: MyCourse },
+      { path: 'mystudent', component: MyStudents },
+    ],
   },
 ];

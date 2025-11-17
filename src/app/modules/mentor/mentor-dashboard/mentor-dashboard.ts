@@ -5,7 +5,6 @@ import { AuthService } from '../../../services/auth-service';
 import { CommonModule } from '@angular/common';
 import { CourseService } from '../../../services/course-service';
 
-
 @Component({
   selector: 'mentor-dashboard',
   imports: [weButton, CommonModule,RouterLink,RouterOutlet],
@@ -19,16 +18,18 @@ export class mentorDashboard {
 
   constructor(
     private auth: AuthService,
-    private courseService: CourseService, // Inject service // Inject service
+    private courseService: CourseService,
     private router: Router
-     ) {this.onNavigate('profile')}
+  ) {
+    this.onNavigate('profile');
+  }
 
   onSignOut(): void {
     localStorage.clear();
     this.auth.clearUserCache();
     this.router.navigate(['/app-login']);
   }
- 
+
   onNavigate(path: string): void {
     this.router.navigate([path]);
   }

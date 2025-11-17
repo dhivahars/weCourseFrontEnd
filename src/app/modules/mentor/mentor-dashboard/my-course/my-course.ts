@@ -5,7 +5,6 @@ import { AuthService } from '../../../../services/auth-service';
 import { InputField } from '../../../../shared/input-field/input-field';
 import { weButton } from '../../../../shared/we-button/button';
 import { CourseService } from '../../../../services/course-service';
-import { Login } from '../../../auth/login/login';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -29,7 +28,7 @@ export class MyCourse implements OnInit {
     private fb: FormBuilder,
     private auth: AuthService,
     private courseService: CourseService,
-    private http:HttpClient
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +45,7 @@ export class MyCourse implements OnInit {
         this.mentor = user;
         this.loadCourses();
       },
-      error: (err) => console.error('Error loading mentor:', err)
+      error: (err) => console.error('Error loading mentor:', err),
     });
   }
 
@@ -54,7 +53,7 @@ export class MyCourse implements OnInit {
     if (!this.mentor?.email) return;
     this.courseService.getCoursesByMentor(this.mentor.email).subscribe({
       next: (data) => {
-        this.courses = data
+        this.courses = data;
 
         //   this.http.get(`http://localhost:8080/courses/capacity/${data.map((course:any)=>course.id)}`).subscribe({
         //   next:(res)=>this.availableSeats=res
@@ -73,9 +72,7 @@ export class MyCourse implements OnInit {
         description: course.description,
         capacity: course.capacity,
         skill: course.skill,
-        prerequisites: Array.isArray(course.prerequisites)
-          ? course.prerequisites.join(', ')
-          : '',
+        prerequisites: Array.isArray(course.prerequisites) ? course.prerequisites.join(', ') : '',
       });
     } else {
       this.editingCourseId = null;

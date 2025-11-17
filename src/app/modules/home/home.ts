@@ -4,6 +4,7 @@ import { weButton } from '../../shared/we-button/button';
 import { Router, RouterOutlet } from '@angular/router';
 import { Courselist } from '../courselist/courselist';
 import { AuthService } from '../../services/auth-service';
+import { Courselist } from '../courselist/course-list';
 
 @Component({
   selector: 'app-home',

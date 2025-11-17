@@ -33,27 +33,27 @@ import { AuthService } from '../../../services/auth-service';
 export class Register implements OnInit {
   signup!: FormGroup;
   skillsList: string[] = [
-  "Core Java",
-  "Advanced Java",
-  "FrontEndJs",
-  "BackEndJs",
-  "Python",
-  "Machine Learning",
-  "MySQL",
-  "MongoDB",
-  "AWS",
-  "DevOps",
-  "C++",
-  "Web Design",
-  "Angular",
-  "API Design",
-  "Cyber Security",
-  "Flutter",
-  "AI & Deep Learning",
-  "Mearn Stack"
-];
+    'Core Java',
+    'Advanced Java',
+    'FrontEndJs',
+    'BackEndJs',
+    'Python',
+    'Machine Learning',
+    'MySQL',
+    'MongoDB',
+    'AWS',
+    'DevOps',
+    'C++',
+    'Web Design',
+    'Angular',
+    'API Design',
+    'Cyber Security',
+    'Flutter',
+    'AI & Deep Learning',
+    'Mearn Stack',
+  ];
   isCorrect = true;
-  errorMessage!:string;
+  errorMessage!: string;
 
   constructor(private sb: FormBuilder, private route: Router, private auth: AuthService) {}
 
@@ -80,7 +80,7 @@ export class Register implements OnInit {
         confirmpassword: ['', Validators.required],
         role: ['', Validators.required],
         skills: [[]],
-        about:['']
+        about: [''],
       },
       { validators: this.passwordValidator }
     );
@@ -103,8 +103,7 @@ export class Register implements OnInit {
   toLogin() {
     this.route.navigate(['/app-login']);
   }
-  get selectedRole()
-  {
+  get selectedRole() {
     return this.signup.get('role')?.value;
   }
   onSubmit(): void {
@@ -116,13 +115,12 @@ export class Register implements OnInit {
     this.auth.onRegister(this.signup.value).subscribe({
       next: (res: any) => {
         console.log('Registration successful:', res.data);
-        this.route.navigate(['/app-login']); // Navigate to login
+        this.route.navigate(['/app-login']);
       },
       error: (err) => {
-        this.errorMessage=err.error?.message;      
-        //console.log(this.errorMessage);
+        this.errorMessage = err.error?.message;
         setTimeout(() => {
-          this.errorMessage=''
+          this.errorMessage = '';
         }, 3000);
         console.error('Registration failed:', err);
       },

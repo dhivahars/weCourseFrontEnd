@@ -64,22 +64,11 @@ export class AuthService {
     this.cachedUser = null;
   }
 
-  //
-//   getMentorByEmail(email: string) {
-//     const token = localStorage.getItem('token');
-//     const headers = new HttpHeaders({
-//       Authorization: `Bearer ${token}`,
-//     });
-//   return this.http.get(`http://localhost:8080/mentor/${email}`,{headers});
-// }
-getAbout(email:string)
-{
-  const token = localStorage.getItem('token');     
-      const headers = new HttpHeaders({
+  getAbout(email: string) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
-  });
-  return this.http.get(`http://localhost:8080/mentor/about/${email}`,{headers});
-
-}
-
+    });
+    return this.http.get(`http://localhost:8080/mentor/about/${email}`, { headers });
+  }
 }

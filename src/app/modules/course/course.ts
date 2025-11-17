@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Courselist } from '../courselist/courselist';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from '../../services/course-service';
 import { weButton } from '../../shared/we-button/button';
 import { constructorChecks } from '@angular/cdk/schematics';
@@ -75,9 +73,9 @@ export class Course {
         error: (err) => {
           console.error('Enrollment failed:', err);
           this.errorMessage = err.error?.message || 'Enrollment failed.';
-          setTimeout(()=>{
-            this.errorMessage=''},3000)
-          
+          setTimeout(() => {
+            this.errorMessage = '';
+          }, 3000);
         },
       });
   }

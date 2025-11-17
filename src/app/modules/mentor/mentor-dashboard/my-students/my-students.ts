@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../../../services/auth-service';
 import { CourseService } from '../../../../services/course-service';
 
-
 @Component({
   selector: 'app-my-students',
   imports: [],
@@ -20,7 +19,7 @@ export class MyStudents {
       next: (user) => {
         this.mentor = user;
         this.loadStudents();
-      }
+      },
     });
   }
   loadStudents(): void {
@@ -29,5 +28,4 @@ export class MyStudents {
       error: (err) => console.error('Error loading students:', err),
     });
   }
-
 }
