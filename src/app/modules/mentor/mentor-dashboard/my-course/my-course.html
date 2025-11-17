@@ -7,9 +7,8 @@
     <div class="course-card">
       <h3>{{ course.title }}</h3>
       <p class="desc">{{ course.description }}</p>
-      <p><strong>Seats Left:</strong>{{ course.capacity }}</p>
       <p><strong>Skill:</strong> {{ course.skill }}</p>
-      <p><strong>No.of Enrollment</strong> {{ course.enrolledCount }}</p>
+      <p><strong>No.of Enrollment:</strong> {{ course.enrolledCount }}</p>
 
       <div class="button">
         <we-button label="Edit" (click)="openModal(course)">
@@ -82,4 +81,8 @@
     </div>
   </form>
 </div>
+} @if(errorMessage){
+<div class="error-popup">{{ errorMessage }}</div>
+} @if(successMessage){
+<div class="success-popup">{{ successMessage }}</div>
 }

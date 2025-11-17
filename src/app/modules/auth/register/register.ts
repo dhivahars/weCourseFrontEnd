@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InputField } from '../../../shared/input-field/input-field';
-import { Button } from '../../../shared/button/button';
+import { weButton } from '../../../shared/we-button/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -17,7 +17,7 @@ import { AuthService } from '../../../services/auth-service';
   standalone: true,
   imports: [
     InputField,
-    Button,
+    weButton,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,

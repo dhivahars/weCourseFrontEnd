@@ -3,12 +3,14 @@ import { AuthService } from '../../../services/auth-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { Button } from '../../../shared/button/button';
+import { weButton } from '../../../shared/we-button/button';
+import { ModulePage } from '../../module-page/module-page';
+import { CourseService } from '../../../services/course-service';
 
 @Component({
   selector: 'student-dashboard',
   standalone: true,
-  imports: [CommonModule, Button],
+  imports: [CommonModule, weButton],
   templateUrl: './student-dash-board.html',
   styleUrls: ['./student-dash-board.scss'],
 })

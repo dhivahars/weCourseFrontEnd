@@ -3,11 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from '../../services/course-service';
-import { Button } from '../../shared/button/button';
+import { weButton } from '../../shared/we-button/button';
+import { constructorChecks } from '@angular/cdk/schematics';
 
 @Component({
   selector: 'app-course',
-  imports: [CommonModule, Button],
+  imports: [CommonModule, weButton],
   templateUrl: './course.html',
   styleUrls: ['./course.scss'],
 })

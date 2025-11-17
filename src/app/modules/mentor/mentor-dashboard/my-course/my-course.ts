@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../../services/auth-service';
 import { InputField } from '../../../../shared/input-field/input-field';
-import { Button } from '../../../../shared/button/button';
+import { weButton } from '../../../../shared/we-button/button';
 import { CourseService } from '../../../../services/course-service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-my-course',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, InputField, Button],
+  imports: [CommonModule, ReactiveFormsModule,InputField,weButton],
   templateUrl: './my-course.html',
   styleUrls: ['./my-course.scss'],
 })
@@ -20,7 +20,9 @@ export class MyCourse implements OnInit {
   courseForm!: FormGroup;
   showModal = false;
   editingCourseId: number | null = null;
-  availableSeats!: any;
+  availableSeats!:any;
+  errorMessage!:String;
+  successMessage!:String;
 
   constructor(
     private fb: FormBuilder,
@@ -100,19 +102,33 @@ export class MyCourse implements OnInit {
       this.courseService.updateCourse(this.editingCourseId, courseData).subscribe({
         next: () => {
           this.loadCourses();
-          // this.closeModal();
-          alert(' Course updated successfully!');
+          this.closeModal();
+          this.successMessage=' Course updated successfully!';
+          setTimeout(()=>{
+            this.successMessage=''
+            
+            },3000)
         },
-        error: () => console.log('error updating'),
+        error: () => console.log("error updating")
+        
       });
     } else {
       this.courseService.createCourse(courseData).subscribe({
         next: () => {
           this.loadCourses();
           this.closeModal();
-          alert(' Course created successfully!');
+          this.successMessage=' Course created successfully!';
+          setTimeout(()=>{
+            this.successMessage=''
+            
+            },3000)
         },
-        error: () => alert(' Error creating course'),
+        error: () => {this.errorMessage=' Error creating course'
+          setTimeout(()=>{
+            this.errorMessage=''
+            
+            },3000)
+        }
       });
     }
   }
@@ -120,8 +136,19 @@ export class MyCourse implements OnInit {
   deleteCourse(id: number): void {
     if (confirm('Are you sure you want to delete this course?')) {
       this.courseService.deleteCourse(id).subscribe({
-        next: () => this.loadCourses(),
-        error: () => alert(' Error deleting course'),
+        next: () => {this.loadCourses();
+          this.successMessage='Course Deleted Successfully'
+          setTimeout(()=>{
+            this.successMessage=''
+            
+            },3000)
+        },
+        error: () => {this.errorMessage='Error deleting course'
+          setTimeout(()=>{
+            this.errorMessage=''
+            
+            },3000)
+        }
       });
     }
   }

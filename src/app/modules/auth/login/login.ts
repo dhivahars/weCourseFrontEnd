@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Button } from '../../../shared/button/button';
+import { weButton } from '../../../shared/we-button/button';
 import { InputField } from '../../../shared/input-field/input-field';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -9,7 +9,7 @@ import { Router, RouterLink } from '@angular/router';
 type Pass = 'text' | 'password';
 @Component({
   selector: 'app-login',
-  imports: [Button, InputField, ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [weButton, InputField, ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
