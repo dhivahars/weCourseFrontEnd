@@ -12,11 +12,11 @@
   <div class="error">
     {{ errorMessage }}
   </div>
-  }
-@if(!isCompleted){
+  } @if(!isCompleted){
   <div class="button-row">
     <button [disabled]="!hasScrolledToBottom" class="complete-btn" (click)="markComplete()">
       Mark as Complete
     </button>
-  </div>}
+  </div>
+  }
 </div>

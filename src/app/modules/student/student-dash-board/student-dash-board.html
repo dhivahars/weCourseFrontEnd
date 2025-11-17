@@ -39,10 +39,10 @@
       }
     </section>
     } @else {
-    <ng-template>
+    <div>
       <p class="loading">Loading your dashboard...</p>
-    </ng-template>
-    }
+    </div>
+     }
 
     <!-- Enrollments -->
     @if(enrollments?.length){ @for(enrollment of enrollments; track enrollment.id){
@@ -71,6 +71,6 @@
       <p>Progress: {{ enrollment.progressPercentage }}%</p>
     </div>
 
-    } } 
+    } }
   </main>
 </div>

@@ -1,5 +1,5 @@
 $text-color: #0f1114;
-$background-color: #f0f6ff; // light grey
+$background-color: #f0f6ff;
 $font-family: 'Source Sans Pro', sans-serif, Arial;
 * {
   font-family: 'Source Sans Pro', Arial, sans-serif;
@@ -10,7 +10,7 @@ $font-family: 'Source Sans Pro', sans-serif, Arial;
   font-family: $font-family;
   display: flex;
   justify-content: center;
-  padding: 2rem 1rem; // taller footer
+  padding: 2rem 1rem;
   text-align: center;
 
   .footer-content {

@@ -1,9 +1,9 @@
-<body>
+<main>
   <div class="container">
     <button class="close-btn" type="button" (click)="close()">✕</button>
     <div class="title">Log in or create account</div>
 
-    <form [formGroup]="login" (ngSubmit)="onSubmit()">
+    <form [formGroup]="login">
       <!-- email -->
       <div class="fields">
         <div>
@@ -46,7 +46,7 @@
         <button type="button" (click)="onShowPassword()" class="showPass">ShowPassword</button>
       </div>
       <div class="btn">
-        <we-button label="Login" />
+        <we-button label="Login" (click)="onSubmit()" />
       </div>
       <div class="switch">
         <span>doesn't have an account?</span
@@ -54,7 +54,7 @@
       </div>
     </form>
     @if(errorMessage){
-    <div class="error-popup">{{errorMessage}}</div>
+    <div class="error-popup">{{ errorMessage }}</div>
     }
   </div>
-</body>
+</main>

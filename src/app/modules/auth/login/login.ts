@@ -4,7 +4,7 @@ import { InputField } from '../../../shared/input-field/input-field';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/auth-service';
-import { Route, Router, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 type Pass = 'text' | 'password';
 @Component({
@@ -16,7 +16,7 @@ type Pass = 'text' | 'password';
 export class Login implements OnInit {
   login!: FormGroup;
   passType: Pass = 'password';
-  errorMessage!:string;
+  errorMessage!: string;
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
@@ -24,7 +24,6 @@ export class Login implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
-    // this.isLogged()? 'login page':this.router.navigate([''])
   }
   get f() {
     return this.login.controls;
@@ -53,9 +52,9 @@ export class Login implements OnInit {
         });
       },
       error: (err) => {
-        this.errorMessage=err.error?.message
+        this.errorMessage = err.error?.message;
         setTimeout(() => {
-          this.errorMessage=''
+          this.errorMessage = '';
         }, 3000);
       },
     });

@@ -8,8 +8,8 @@ import { CourseService } from '../../services/course-service';
   selector: 'app-courselist',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './courselist.html',
-  styleUrl: './courselist.scss',
+  templateUrl: './course-list.html',
+  styleUrl: './course-list.scss',
 })
 export class Courselist implements OnInit {
   courses: any[] = [];

@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Button } from '../../../shared/button/button';
-import { ModulePage } from '../../module-page/module-page';
-import { CourseService } from '../../../services/course-service';
 
 @Component({
   selector: 'student-dashboard',
@@ -18,17 +16,13 @@ export class StudentDashBoard implements OnInit {
   student: any;
   enrollments: any;
   email: any;
-  skills:any[]=[];
-  constructor(private auth: AuthService,
-     private http: HttpClient, 
-     private router: Router) {
-  }
+  skills: any[] = [];
+  constructor(private auth: AuthService, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.email = localStorage.getItem('email');
     this.auth.getUser().subscribe({
       next: (user) => {
-        
         this.student = user;
         console.log('Student loaded:', this.student);
         if (this.student && this.student.id) {
@@ -48,20 +42,22 @@ export class StudentDashBoard implements OnInit {
                 console.error('Error loading enrollments:', err);
               },
             });
-            this.http.get(`http://localhost:8080/student/skills/${this.email}`,{headers}).subscribe({
-              next:(res:any)=>{this.skills =res.Skills},
-              error:(err)=>{console.log(err);
-              }
-            })
+          this.http
+            .get(`http://localhost:8080/student/skills/${this.email}`, { headers })
+            .subscribe({
+              next: (res: any) => {
+                this.skills = res.Skills;
+              },
+              error: (err) => {
+                console.log(err);
+              },
+            });
         }
-       
       },
       error: (err) => {
         console.error('Error loading student data:', err);
       },
     });
-
-    
   }
   openCourse(enrollment: any) {
     const courseId = enrollment.id;
@@ -74,10 +70,8 @@ export class StudentDashBoard implements OnInit {
     this.auth.clearUserCache();
     this.router.navigate(['/app-login']);
   }
- 
 
   onNavigate(path: string): void {
     this.router.navigate([path]);
   }
-
 }

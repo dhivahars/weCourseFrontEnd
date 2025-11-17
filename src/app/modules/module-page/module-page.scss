@@ -17,7 +17,6 @@ $font: 'Source Sans Pro', sans-serif;
   }
 }
 
-/* Back Button */
 .back-btn {
   background: none;
   border: none;
@@ -31,7 +30,6 @@ $font: 'Source Sans Pro', sans-serif;
   }
 }
 
-/* Content Box */
 .module-text {
   white-space: pre-wrap;
   background: white;
@@ -44,14 +42,12 @@ $font: 'Source Sans Pro', sans-serif;
   margin-bottom: 2rem;
 }
 
-/* Button Row */
 .button-row {
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
 }
 
-/* Complete Button */
 .complete-btn {
   background-color: $primary-color;
   border: none;

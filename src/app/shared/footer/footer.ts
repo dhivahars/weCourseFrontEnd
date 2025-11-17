@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class Footer {
   constructor(private router: Router) {}
 
-  // Sign out function
   onSignOut(): void {
     localStorage.clear();
     this.router.navigate(['/app-login']);

@@ -15,10 +15,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@a
   ],
 })
 export class InputField implements ControlValueAccessor {
-  @Input() label: string = 'label';
+  @Input() label: string = '';
   @Input() id!: string;
   @Input() type: string = 'text';
-  @Input() placeholder: string = 'place holder';
+  @Input() placeholder: string = '';
   @Input() formControlName!: string;
 
   @Output() inputChange = new EventEmitter<string>();
