@@ -6,9 +6,9 @@ import { StudentDashBoard } from './modules/student/student-dash-board/student-d
 import { Register } from './modules/auth/register/register';
 import { Course } from './modules/course/course';
 import { ModulePage } from './modules/module-page/module-page';
-import { Profile } from './modules/mentor/mentor-dashboard/profile/profile';
 import { MyCourse } from './modules/mentor/mentor-dashboard/my-course/my-course';
 import { MyStudents } from './modules/mentor/mentor-dashboard/my-students/my-students';
+import { Profile } from './modules/mentor/mentor-dashboard/profile/profile';
 
 export const routes: Routes = [
   {

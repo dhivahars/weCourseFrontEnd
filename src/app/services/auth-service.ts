@@ -8,7 +8,7 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class AuthService {
   private baseUrl = 'http://localhost:8080/auth';
-  private cachedUser: any = null;
+  cachedUser: any = null;
 
   constructor(private http: HttpClient) {}
 

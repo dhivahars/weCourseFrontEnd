@@ -6,7 +6,7 @@ import { AuthService } from '../../../../services/auth-service';
   imports: [],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
-})
+}) 
 export class Profile implements OnInit {
   mentor: any;
   constructor(private auth: AuthService) {}
