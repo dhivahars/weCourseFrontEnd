@@ -1,47 +1,17 @@
+/* OPTIONAL FORM-FIELD CUSTOMIZATION */
 @use '@angular/material' as mat;
-
-html {
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-      ),
-      typography: Source Sans Pro,
-      density: 0,
-    )
-  );
-}
-
-body {
-  color-scheme: light;
-  background-color: var(#fff);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-  margin: 0;
-}
 * {
   box-sizing: border-box;
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-html,
-body {
+html, body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 
 @include mat.form-field-density(-1);
-
-.mat-mdc-text-field-wrapper,
-.mat-mdc-form-field-focus-overlay,
-.mat-mdc-form-field-flex {
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
 
 .mdc-notched-outline,
 .mdc-notched-outline__leading,
@@ -51,6 +21,7 @@ body {
 }
 
 .mat-mdc-form-field-flex {
+  background-color: transparent !important;
   border: 1px solid #7b8491 !important;
   border-radius: 0.5rem !important;
   padding: 0.4rem 0.6rem !important;
