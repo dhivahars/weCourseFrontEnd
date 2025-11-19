@@ -131,14 +131,14 @@ export class MyCourse implements OnInit {
   deleteCourse(id: number): void {
     if (confirm('Are you sure you want to delete this course?')) {
       this.courseService.deleteCourse(id).subscribe({
-        next: () => {this.loadCourses();
-          this.successMessage='Course Deleted Successfully'
+        next: (res:any) => {this.loadCourses();
+          this.successMessage= res.message;
           setTimeout(()=>{
             this.successMessage=''
             
             },3000)
         },
-        error: () => {this.errorMessage='Error deleting course'
+        error: (err) => {this.errorMessage=err.error?.message;
           setTimeout(()=>{
             this.errorMessage=''
             

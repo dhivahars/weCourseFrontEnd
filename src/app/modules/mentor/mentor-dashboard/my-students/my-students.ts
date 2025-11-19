@@ -44,5 +44,4 @@ export class MyStudents {
       error: (err) => console.error('Error loading students:', err),
     });
   }
-
-}
+}  
